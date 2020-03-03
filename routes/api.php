@@ -20,3 +20,4 @@ use Illuminate\Http\Request;
 Route::post("/client/create", "ApiController@createClient");
 Route::post("user/create", "UserController@create");
 Route::post("user/login", "UserController@createLogin");
+Route::post("policy/create", "PolicyController@create");

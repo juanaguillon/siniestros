@@ -18,10 +18,10 @@ class CreateSinsSinistersTable extends Migration
 			
 			$table->integer("sinister_policy");
 			$table->integer("sinister_person");
-			$table->string("sinister_place");
+			$table->string("sinister_place")->nullable();
 			$table->dateTime("sinister_noticed");
 			$table->dateTime("sinister_presented");
-			$table->integer("sinister_left_days");
+			$table->integer("sinister_datepact");
 			$table->integer("sinister_pretention");
 			$table->integer("sinister_reservation");
 			$table->integer("sinister_status");
