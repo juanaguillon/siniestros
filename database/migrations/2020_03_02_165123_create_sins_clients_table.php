@@ -17,7 +17,7 @@ class CreateSinsClientsTable extends Migration
 			$table->bigIncrements('client_id');
 
 			$table->string("client_name")->nullable();
-			$table->string("client_address");
+			$table->string("client_address")->nullable();
 
 			$table->string("client_nit");
 			$table->string("client_email");

@@ -33,7 +33,7 @@ class ClientController extends Controller
 		}
 
 		$clientModel = new ClientModel();
-		$clientModel::create();
+		$clientModel::create($request->all(array_keys($keys)) );
 
 		if ($clientModel) {
 			return response()->json(array(
