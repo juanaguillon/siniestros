@@ -7,6 +7,7 @@ use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -85,6 +86,24 @@ class UserController extends Controller
 
 		$validate = Validator::make($request->all(), $keys);
 
+		// $credentials = request(['user_email', 'user_password']);
+
+		// $credentials = array(
+		// 	"user_email" => $request->input("user_email"),
+		// 	"password" => $request->input("user_password")
+		// );
+		// $token = auth()->attempt($credentials);
+		// if (!$token) {
+		// 	return response()->json(['error' => 'Unauthorized'], 401);
+		// }
+
+		// return response()->json(array(
+		// 	"access_token" => $token,
+		// 	"token_type" => "bearer",
+		// 	// 'expires_in' => auth()->factory()->getTTL() * 60
+		// ));
+
+
 		try {
 			if ($validate->fails()) {
 				throw new Error($validate->errors()->first());
@@ -96,10 +115,11 @@ class UserController extends Controller
 				$passwordSaved = $findedUser->user_password;
 
 				if (Hash::check($request->input("user_password"), $passwordSaved)) {
+
 					return response()->json(array(
 						"error" => false,
 						"message" => "Usuario logeado correctamente",
-						"token" => "token_admin"
+						"token" => JWTAuth::fromUser($findedUser)
 					));
 				} else {
 					throw new Error("Email o contraseña inválidos.");
