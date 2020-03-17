@@ -26,7 +26,7 @@ class CreateSinsPoliciesTable extends Migration
 			$table->text("policy_details")->nullable();
 			$table->integer("policy_secure_value");
 			$table->integer("policy_deductible");
-			// $table->integer("policy_limits");
+			$table->integer("policy_limits")->nullable();
 
 			$table->timestamp("policy_created")->nullable();
 			$table->timestamp("policy_updated")->nullable();

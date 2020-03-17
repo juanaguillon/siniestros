@@ -21,6 +21,7 @@ class CreateSinsUsersTable extends Migration
 
 			$table->string("user_email")->nullable();
 			$table->string("user_password")->nullable();
+			$table->integer("user_insure")->nullable();
 
 			$table->timestamp("user_created")->nullable();
 			$table->timestamp("user_updated")->nullable();

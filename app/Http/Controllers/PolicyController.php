@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\PolicyModel;
 use App\Models\PolicyModel as ModelsPolicyModel;
 use Error;
 use Illuminate\Http\Request;
@@ -11,6 +10,13 @@ use Illuminate\Validation\Rule;
 
 class PolicyController extends Controller
 {
+
+	/**
+	 * POST /api/policy/create
+	 * Crear una nueva póliza
+	 * @param Request $request
+	 * @return void
+	 */
 	public function create(Request $request)
 	{
 		$keys = array(
@@ -20,13 +26,13 @@ class PolicyController extends Controller
 			),
 			"policy_insure" => "numeric", // Aseguradora responsable
 			"policy_percentaje" => "numeric|gt:0|lt:100",
-			"policy_responsable" => "required|string",
+			"policy_responsable" => "required|string", // Nombre de Responsable
 			"policy_company" => "required|numeric",
 			"policy_person" => "required|numeric",
 			"policy_details" => "",
 			"policy_secure_value" => "required|numeric",
-			"policy_deductible" => "required|numeric|gt:0|lt:100",
-			// "policy_limits" => "numeric",
+			"policy_deductible" => "required|numeric|gt:0|lt:100", // Valor Asegurado
+			"policy_limits" => "numeric",
 		);
 
 		$validate = Validator::make($request->all(), $keys);
@@ -54,5 +60,15 @@ class PolicyController extends Controller
 				"message" => $th->getMessage()
 			));
 		}
+	}
+
+	/**
+	 * GET /api/policy/all
+	 *	Obtener todas las polizas creadas
+	 */
+	public function getAllPolicies()
+	{
+		$policyModel = new ModelsPolicyModel();
+		return response()->json($policyModel->all());
 	}
 }

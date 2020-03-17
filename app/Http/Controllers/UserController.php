@@ -45,7 +45,7 @@ class UserController extends Controller
 		$password = Hash::make($request->input("user_password"));
 
 		$dataSave = array(
-			"user_rol" => "admin",
+			"user_rol" => "editor",
 			"user_name" => $request->input("user_name"),
 			"user_email" => $request->input("user_email"),
 			"user_password" => $password
@@ -75,7 +75,6 @@ class UserController extends Controller
 	 */
 	public function createLogin(Request $request)
 	{
-
 
 		$keys = array(
 			"user_email" => "required|string",

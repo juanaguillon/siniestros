@@ -33,7 +33,7 @@ class ClientController extends Controller
 		}
 
 		$clientModel = new ClientModel();
-		$clientModel::create($request->all(array_keys($keys)) );
+		$clientModel::create($request->all(array_keys($keys)));
 
 		if ($clientModel) {
 			return response()->json(array(
@@ -46,5 +46,11 @@ class ClientController extends Controller
 				"message" => "Error al crear el nuevo usuario, intente nuevamente."
 			));
 		}
+	}
+
+	public function getClients()
+	{
+		$clientModel = new ClientModel();
+		return response()->json($clientModel->all());
 	}
 }

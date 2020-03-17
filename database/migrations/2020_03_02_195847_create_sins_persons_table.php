@@ -14,13 +14,13 @@ class CreateSinsPersonsTable extends Migration
 	public function up()
 	{
 		Schema::create('sins_persons', function (Blueprint $table) {
-			$table->integer("person_id");
+			$table->bigIncrements("person_id");
 			$table->string("person_email");
 			$table->string("person_phone");
 			$table->string("person_address");
 			$table->string("person_city");
-			$table->integer("person_created");
-			$table->integer("person_updated");
+			$table->timestamp("person_created")->nullable();
+			$table->timestamp("person_updated")->nullable();
 		});
 	}
 
