@@ -54,4 +54,9 @@ class InsureController extends Controller
 			));
 		}
 	}
+
+	public function getAll(){
+		$insureModel = new InsureModel();
+		return $insureModel->all();
+	}
 }

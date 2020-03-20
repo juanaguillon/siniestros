@@ -20,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(["cors"])->group(function () {
+
   Route::get("client/all", "ClientController@getClients");
-  Route::post("client/create", "ApiController@createClient");
+  Route::post("client/create", "ClientController@create");
+  Route::post("client/update/{clientid}", "ClientController@updateById");
+  Route::get("client/get/{clientid}", "ClientController@getById");
 
   Route::post("user/create", "UserController@create");
   Route::post("user/login", "UserController@createLogin");
@@ -30,6 +33,7 @@ Route::middleware(["cors"])->group(function () {
   Route::post("policy/create", "PolicyController@create");
 
   Route::post("insure/create", "InsureController@create");
+  Route::get("insure/all", "InsureController@getAll");
 
   Route::post("sinister/create", "SinisterController@create");
 

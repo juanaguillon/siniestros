@@ -11,7 +11,6 @@ class ApiController extends Controller
 	public function __construct()
 	{
 		$this->clientController = new ClientController();
-		$this->clientController = new ClientController();
 	}
 
 	/**
