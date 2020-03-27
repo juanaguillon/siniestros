@@ -30,12 +30,15 @@ Route::middleware(["cors"])->group(function () {
   Route::post("user/login", "UserController@createLogin");
 
   Route::get("policy/all", "PolicyController@getAllPolicies");
+  Route::get("policy/get/{policyid}", "PolicyController@getById");
   Route::post("policy/create", "PolicyController@create");
 
   Route::post("insure/create", "InsureController@create");
   Route::get("insure/all", "InsureController@getAll");
 
   Route::post("sinister/create", "SinisterController@create");
+  Route::get('sinister/all', 'SinisterController@getAll');
+  Route::get('sinister/get/{sinisterid}', 'SinisterController@getById');
 
   Route::post("person/create", "PersonController@create");
 });

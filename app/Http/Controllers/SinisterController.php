@@ -61,4 +61,26 @@ class SinisterController extends Controller
 			));
 		}
 	}
+
+
+	/**
+	 * GET /api/sinister/all
+	 * Obtener todos los siniestros registrados
+	 *
+	 * @return void
+	 */
+	public function getAll()
+	{
+		return response()->json(SinisterModel::all());
+	}
+
+	/**
+	 * GET /api/sinister/get/{sinisterid}
+	 * Obtener un siniestro por ID
+	 */
+	public function getById($sinisterid)
+	{
+		$foundSin = SinisterModel::find($sinisterid);
+		return response()->json($foundSin);
+	}
 }

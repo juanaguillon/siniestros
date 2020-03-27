@@ -71,4 +71,14 @@ class PolicyController extends Controller
 		$policyModel = new ModelsPolicyModel();
 		return response()->json($policyModel->all());
 	}
+
+	/**
+	 * GET /api/policy/get/{policyid}
+	 * Obtener una poliza en especifico por ID
+	 */
+	public function getById($policyid)
+	{
+		$policyModel = new ModelsPolicyModel();
+		return response()->json($policyModel->find($policyid));
+	}
 }
