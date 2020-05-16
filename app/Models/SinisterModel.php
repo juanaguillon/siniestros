@@ -10,6 +10,7 @@ class SinisterModel extends Model
 		"sinister_policy",
 		"sinister_person",
 		"sinister_place",
+		"sinister_date",
 		"sinister_noticed",
 		"sinister_presented",
 		"sinister_datepact",

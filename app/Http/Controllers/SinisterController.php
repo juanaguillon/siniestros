@@ -23,15 +23,12 @@ class SinisterController extends Controller
 			"sinister_policy" => "required|numeric",
 			"sinister_person" => "required|numeric",
 			"sinister_place" => "required|string",
+			"sinister_date" => "required|date_format:Y-m-d H:i:s",
 			"sinister_noticed" => "required|date_format:Y-m-d H:i:s",
 			"sinister_presented" => "required|date_format:Y-m-d H:i:s",
 			"sinister_datepact" => "required|date_format:Y-m-d",
 			"sinister_pretention" => "required|numeric",
 			"sinister_reservation" => "required|numeric",
-			"sinister_status" =>  array(
-				"required",
-				Rule::in(range(0, 5))
-			)
 		);
 
 		$validate = Validator::make($request->all(), $keys);
@@ -43,7 +40,13 @@ class SinisterController extends Controller
 			}
 
 			$sinisterModel = new SinisterModel();
-			$dataSave = $request->all(array_keys($keys));
+			$dataSave = array_merge(
+				$request->all(array_keys($keys)),
+				array(
+					'sinister_status' => '0'
+				)
+			);
+
 			$isSaved = $sinisterModel->create($dataSave);
 
 			if ($isSaved) {
@@ -82,5 +85,28 @@ class SinisterController extends Controller
 	{
 		$foundSin = SinisterModel::find($sinisterid);
 		return response()->json($foundSin);
+	}
+
+	/**
+	 * Actualizar un siniestro en especifico
+	 *
+	 * @param Request $request
+	 * @return void
+	 */
+	public function update(Request $request, $sinisterid)
+	{
+		$keys = array(
+			"sinister_policy" => "required|numeric",
+			"sinister_person" => "required|numeric",
+			"sinister_place" => "required|string",
+			"sinister_date" => "required|date_format:Y-m-d H:i:s",
+			"sinister_noticed" => "required|date_format:Y-m-d H:i:s",
+			"sinister_presented" => "required|date_format:Y-m-d H:i:s",
+			"sinister_datepact" => "required|date_format:Y-m-d",
+			"sinister_pretention" => "required|numeric",
+			"sinister_reservation" => "required|numeric",
+		);
+
+		$validate = Validator::make($request->all(), $keys);
 	}
 }
